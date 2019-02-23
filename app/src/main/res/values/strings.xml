@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Nyusu</string>
     <string name="title_activity_nieuws">nieuwsActivity</string>
+    <string name="nyusu">NYUSU</string>
+    <string name="title_activity_news">NewsActivity</string>
+    <string name="de_ware_tijd">De Ware Tijd</string>
+    <string name="dagblad_suriname">Dagblad Suriname</string>
+    <string name="starnieuws">StarNieuws</string>
+
+    <string name="view">View</string>
+
 </resources>

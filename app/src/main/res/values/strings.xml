@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Nyusu</string>
+    <string name="title_activity_nieuws">nieuwsActivity</string>
 </resources>

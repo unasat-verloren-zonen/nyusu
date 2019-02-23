@@ -11,6 +11,6 @@
         android:layout_height="match_parent"
         android:textFontWeight="700"
         android:textSize="40sp"
-        android:text="Settingss" />
+        android:text="Settings" />
 
 </FrameLayout>

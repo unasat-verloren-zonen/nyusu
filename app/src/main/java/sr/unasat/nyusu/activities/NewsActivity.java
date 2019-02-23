@@ -9,12 +9,12 @@ import android.view.View;
 
 import sr.unasat.nyusu.R;
 
-public class nieuwsActivity extends AppCompatActivity {
+public class NewsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nieuws);
+        setContentView(R.layout.activity_news);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

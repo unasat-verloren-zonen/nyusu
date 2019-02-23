@@ -1,6 +1,19 @@
 <resources>
+    <string name="settings">Settings</string>
+    <string name="username">User Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
     <string name="app_name">NYUSU</string>
     <string name="title_activity_nieuws">nieuwsActivity</string>
+    <string name="nyusu">NYUSU</string>
+    <string name="title_activity_news">NewsActivity</string>
+    <string name="de_ware_tijd">De Ware Tijd</string>
+    <string name="dagblad_suriname">Dagblad Suriname</string>
+    <string name="starnieuws">StarNieuws</string>
+
+    <string name="view">View</string>
     <string name="Logout">logout</string>
 
     <!-- TODO: Remove or change this placeholder text -->

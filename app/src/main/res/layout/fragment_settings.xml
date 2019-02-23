@@ -1,16 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SettingsFragment">
+    android:orientation="vertical"
+    android:padding="@dimen/page_padding"
+    tools:context="sr.unasat.nyusu.fragments.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textFontWeight="700"
-        android:textSize="40sp"
-        android:text="Settingss" />
+        android:layout_height="wrap_content"
+        android:text="@string/settings"
+        android:textSize="36sp" />
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/profile_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/view_padding"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/normal_text_size"
+            android:textStyle="bold"
+            android:text="@string/username"/>
+
+        <TextView
+            android:id="@+id/profile_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/normal_text_size"
+            android:layout_marginBottom="@dimen/large_margin"/>
+
+        <Button
+            android:id="@+id/button_edit_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:text="@string/edit"
+            android:textColor="@color/colorPrimary" />
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/profile_editprofile"
+        android:visibility="gone"
+        layout="@layout/settings_edit" />
+
+</LinearLayout>

@@ -1,5 +1,8 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="sm_padding">6dp</dimen>
+    <dimen name="m_padding">8dp</dimen>
     <dimen name="layout_padding">18dp</dimen>
     <dimen name="card_radius">6dp</dimen>
     <dimen name="page_padding">8dp</dimen>

@@ -9,7 +9,7 @@ public class News {
     private String text;
     private Date date;
 
-    public News(int id, String title, String imgUrl, String text, Date date) {
+    public News(int id, String title, String imgUrl, String text, double date) {
         this.id = id;
         this.title = title;
         this.imgUrl = imgUrl;

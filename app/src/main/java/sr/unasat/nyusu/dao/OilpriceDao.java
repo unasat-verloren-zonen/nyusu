@@ -5,19 +5,20 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import sr.unasat.nyusu.entities.Currency;
+import sr.unasat.nyusu.entities.OilPrice;
 
-public class CurrencyDao {
+public class OilpriceDao {
+
     private Context context;
     NyusuDbHelper nyDbHelper;
     SQLiteDatabase db;
 
-    public CurrencyDao(Context context) {
+    public OilpriceDao(Context context) {
         this.context = context;
         nyDbHelper = new NyusuDbHelper(context);
     }
 
-    /* Removed register currency
+    /* Removed register oilprice
     public boolean registerUser(User user){
         try {
             // Gets the data repository in write mode
@@ -47,32 +48,28 @@ public class CurrencyDao {
     }
     */
 
-    private Currency getCurrency(int currencyId){
+    private OilPrice getOilPrice(int oilpriceId){
         try {
             db = nyDbHelper.getReadableDatabase();
 
-            Cursor cursor = db.query(NyusuContract.CurrencyEntry.TABLE_NAME,// Selecting Table
-                    new String[]{NyusuContract.CurrencyEntry.CALUMN_NAME_ID,
-                            NyusuContract.CurrencyEntry.CALUMN_NAME_NAME,
-                            NyusuContract.CurrencyEntry.CALUMN_NAME_SYMBOL,
-                            NyusuContract.CurrencyEntry.CALUMN_NAME_BUY,
-                            NyusuContract.CurrencyEntry.CALUMN_NAME_SELL, },
-                    //Selecting columns want to query
-                    NyusuContract.CurrencyEntry.CALUMN_NAME_ID + "= ?",
-                    new String[]{String.valueOf(currencyId)},//Where clause
+            Cursor cursor = db.query(NyusuContract.OilpriceEntry.TABLE_NAME,// Selecting Table
+                    new String[]{NyusuContract.OilpriceEntry.CALUMN_NAME_ID,
+                            NyusuContract.OilpriceEntry.CALUMN_NAME_UNLEADED,
+                            NyusuContract.OilpriceEntry.CALUMN_NAME_DIESEL,
+                            NyusuContract.OilpriceEntry.CALUMN_NAME_COMPANY_ID},//Selecting columns want to query
+                    NyusuContract.OilpriceEntry.CALUMN_NAME_ID + "= ?",
+                    new String[]{String.valueOf(oilpriceId)},//Where clause
                     null, null, null);
 
             if (cursor != null && cursor.moveToFirst() && cursor.getCount()>0) {
-                //if cursor has value then in currency database there is currency associated with this given currency name
-                Currency currency = new Currency(
+                //if cursor has value then in oilprice database there is oilprice associated with this given ??currency name
+                OilPrice oilprice = new OilPrice(
                         cursor.getInt(0),
-                        cursor.getString(1),
-                        cursor.getString(2),
-                        cursor.getDouble(3),
-                        cursor.getDouble(4));
+                        cursor.getDouble(1),
+                        cursor.getDouble(2));
 
-                System.out.println(currency.toString());
-                return currency;
+                System.out.println(oilprice.toString());
+                return oilprice;
             }
         }catch (SQLException e) {
             e.printStackTrace();
@@ -80,11 +77,11 @@ public class CurrencyDao {
             nyDbHelper.close();
         }
 
-        //if there is no record with that currency name then return @false
+        //if there is no record with that ??currency name then return @false
         return null;
     }
 
-    /* Removed update currency
+    /* Removed update oilprice
     public boolean updateUser(User user){
         try {
             // Gets the data repository in write mode
@@ -113,7 +110,7 @@ public class CurrencyDao {
     }
     */
 
-    /* Removed delete currency
+    /* Removed delete oilprice
     public boolean deleteUser(int id) {
         try {
             // Gets the data repository in write mode
@@ -130,4 +127,6 @@ public class CurrencyDao {
         return false;
     }
     */
+
+    
 }

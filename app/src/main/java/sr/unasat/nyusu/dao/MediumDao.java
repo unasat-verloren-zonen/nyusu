@@ -5,19 +5,20 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import sr.unasat.nyusu.entities.Currency;
+import sr.unasat.nyusu.entities.Medium;
 
-public class CurrencyDao {
+public class MediumDao {
+
     private Context context;
     NyusuDbHelper nyDbHelper;
     SQLiteDatabase db;
 
-    public CurrencyDao(Context context) {
+    public MediumDao(Context context) {
         this.context = context;
         nyDbHelper = new NyusuDbHelper(context);
     }
 
-    /* Removed register currency
+    /* Removed register medium
     public boolean registerUser(User user){
         try {
             // Gets the data repository in write mode
@@ -47,32 +48,25 @@ public class CurrencyDao {
     }
     */
 
-    private Currency getCurrency(int currencyId){
+    private Medium getMedium(int mediumId){
         try {
             db = nyDbHelper.getReadableDatabase();
 
-            Cursor cursor = db.query(NyusuContract.CurrencyEntry.TABLE_NAME,// Selecting Table
-                    new String[]{NyusuContract.CurrencyEntry.CALUMN_NAME_ID,
-                            NyusuContract.CurrencyEntry.CALUMN_NAME_NAME,
-                            NyusuContract.CurrencyEntry.CALUMN_NAME_SYMBOL,
-                            NyusuContract.CurrencyEntry.CALUMN_NAME_BUY,
-                            NyusuContract.CurrencyEntry.CALUMN_NAME_SELL, },
-                    //Selecting columns want to query
-                    NyusuContract.CurrencyEntry.CALUMN_NAME_ID + "= ?",
-                    new String[]{String.valueOf(currencyId)},//Where clause
+            Cursor cursor = db.query(NyusuContract.MediumEntry.TABLE_NAME,// Selecting Table
+                    new String[]{NyusuContract.MediumEntry.CALUMN_NAME_ID,
+                            NyusuContract.MediumEntry.CALUMN_NAME_NAME, },//Selecting columns want to query
+                    NyusuContract.MediumEntry.CALUMN_NAME_ID + "= ?",
+                    new String[]{String.valueOf(mediumId)},//Where clause
                     null, null, null);
 
             if (cursor != null && cursor.moveToFirst() && cursor.getCount()>0) {
-                //if cursor has value then in currency database there is currency associated with this given currency name
-                Currency currency = new Currency(
+                //if cursor has value then in medium database there is medium associated with this given medium name
+                Medium medium = new Medium(
                         cursor.getInt(0),
-                        cursor.getString(1),
-                        cursor.getString(2),
-                        cursor.getDouble(3),
-                        cursor.getDouble(4));
+                        cursor.getString(1));
 
-                System.out.println(currency.toString());
-                return currency;
+                System.out.println(medium.toString());
+                return medium;
             }
         }catch (SQLException e) {
             e.printStackTrace();
@@ -80,11 +74,11 @@ public class CurrencyDao {
             nyDbHelper.close();
         }
 
-        //if there is no record with that currency name then return @false
+        //if there is no record with that medium name then return false
         return null;
     }
 
-    /* Removed update currency
+    /* Removed update medium
     public boolean updateUser(User user){
         try {
             // Gets the data repository in write mode
@@ -113,7 +107,7 @@ public class CurrencyDao {
     }
     */
 
-    /* Removed delete currency
+    /* Removed delete medium
     public boolean deleteUser(int id) {
         try {
             // Gets the data repository in write mode
@@ -130,4 +124,5 @@ public class CurrencyDao {
         return false;
     }
     */
+
 }

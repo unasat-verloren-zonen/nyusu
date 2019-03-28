@@ -47,36 +47,36 @@ public class CompanyDao {
     }
     */
 
-    private Company getCompany(int companyId){
-        try {
-            db = nyDbHelper.getReadableDatabase();
-
-            Cursor cursor = db.query(NyusuContract.CompanyEntry.TABLE_NAME,// Selecting Table
-                    new String[]{NyusuContract.CompanyEntry.CALUMN_NAME_ID,
-                            NyusuContract.CompanyEntry.CALUMN_NAME_NAME, },
-                    //Selecting columns want to query
-                    NyusuContract.CompanyEntry.CALUMN_NAME_ID+ "= ?",
-                    new String[]{String.valueOf(companyId)},//Where clause
-                    null, null, null);
-
-            if (cursor != null && cursor.moveToFirst() && cursor.getCount()>0) {
-                //if cursor has value then in company database there is company associated with this given company name
-                Company company = new Company(
-                        cursor.getInt(0),
-                        cursor.getString(1));
-
-                System.out.println(company.toString());
-                return company;
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            nyDbHelper.close();
-        }
-
-        //if there is no record with that company name then return false
-        return null;
-    }
+//    private Company getCompany(int companyId){
+//        try {
+//            db = nyDbHelper.getReadableDatabase();
+//
+//            Cursor cursor = db.query(NyusuContract.CompanyEntry.TABLE_NAME,// Selecting Table
+//                    new String[]{NyusuContract.CompanyEntry.CALUMN_NAME_ID,
+//                            NyusuContract.CompanyEntry.CALUMN_NAME_NAME, },
+//                    //Selecting columns want to query
+//                    NyusuContract.CompanyEntry.CALUMN_NAME_ID+ "= ?",
+//                    new String[]{String.valueOf(companyId)},//Where clause
+//                    null, null, null);
+//
+//            if (cursor != null && cursor.moveToFirst() && cursor.getCount()>0) {
+//                //if cursor has value then in company database there is company associated with this given company name
+//                Company company = new Company(
+//                        cursor.getInt(0),
+//                        cursor.getString(1));
+//
+//                System.out.println(company.toString());
+//                return company;
+//            }
+//        }catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            nyDbHelper.close();
+//        }
+//
+//        //if there is no record with that company name then return false
+//        return null;
+//    }
 
     /* Removed update company
     public boolean updateUser(User user){

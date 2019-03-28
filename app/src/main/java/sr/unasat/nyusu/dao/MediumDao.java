@@ -48,35 +48,35 @@ public class MediumDao {
     }
     */
 
-    private Medium getMedium(int mediumId){
-        try {
-            db = nyDbHelper.getReadableDatabase();
-
-            Cursor cursor = db.query(NyusuContract.MediumEntry.TABLE_NAME,// Selecting Table
-                    new String[]{NyusuContract.MediumEntry.CALUMN_NAME_ID,
-                            NyusuContract.MediumEntry.CALUMN_NAME_NAME, },//Selecting columns want to query
-                    NyusuContract.MediumEntry.CALUMN_NAME_ID + "= ?",
-                    new String[]{String.valueOf(mediumId)},//Where clause
-                    null, null, null);
-
-            if (cursor != null && cursor.moveToFirst() && cursor.getCount()>0) {
-                //if cursor has value then in medium database there is medium associated with this given medium name
-                Medium medium = new Medium(
-                        cursor.getInt(0),
-                        cursor.getString(1));
-
-                System.out.println(medium.toString());
-                return medium;
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            nyDbHelper.close();
-        }
-
-        //if there is no record with that medium name then return false
-        return null;
-    }
+//    private Medium getMedium(int mediumId){
+//        try {
+//            db = nyDbHelper.getReadableDatabase();
+//
+//            Cursor cursor = db.query(NyusuContract.MediumEntry.TABLE_NAME,// Selecting Table
+//                    new String[]{NyusuContract.MediumEntry.CALUMN_NAME_ID,
+//                            NyusuContract.MediumEntry.CALUMN_NAME_NAME, },//Selecting columns want to query
+//                    NyusuContract.MediumEntry.CALUMN_NAME_ID + "= ?",
+//                    new String[]{String.valueOf(mediumId)},//Where clause
+//                    null, null, null);
+//
+//            if (cursor != null && cursor.moveToFirst() && cursor.getCount()>0) {
+//                //if cursor has value then in medium database there is medium associated with this given medium name
+//                Medium medium = new Medium(
+//                        cursor.getInt(0),
+//                        cursor.getString(1));
+//
+//                System.out.println(medium.toString());
+//                return medium;
+//            }
+//        }catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            nyDbHelper.close();
+//        }
+//
+//        //if there is no record with that medium name then return false
+//        return null;
+//    }
 
     /* Removed update medium
     public boolean updateUser(User user){

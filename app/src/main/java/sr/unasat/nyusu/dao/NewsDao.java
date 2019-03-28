@@ -47,42 +47,42 @@ public class NewsDao {
     }
     */
 
-    private News getNews(int newsId){
-        try {
-            db = nyDbHelper.getReadableDatabase();
-
-            Cursor cursor = db.query(NyusuContract.NewsEntry.TABLE_NAME,// Selecting Table
-                    new String[]{NyusuContract.NewsEntry.CALUMN_NAME_ID,
-                            NyusuContract.NewsEntry.CALUMN_NAME_IMGURL,
-                            NyusuContract.NewsEntry.CALUMN_NAME_DATE,
-                            NyusuContract.NewsEntry.CALUMN_NAME_TEXT,
-                            NyusuContract.NewsEntry.CALUMN_NAME_MEDIUM_ID, },
-                    //Selecting columns want to query
-                    NyusuContract.NewsEntry.CALUMN_NAME_ID + "= ?",
-                    new String[]{String.valueOf(newsId)},//Where clause
-                    null, null, null);
-
-            if (cursor != null && cursor.moveToFirst() && cursor.getCount()>0) {
-                //if cursor has value then in news database there is currency associated with this given currency name
-                News news = new News(
-                        cursor.getInt(0),
-                        cursor.getString(1),
-                        cursor.getString(2),
-                        cursor.getString(3),
-                        cursor.getString(4));
-
-                System.out.println(news.toString());
-                return news;
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            nyDbHelper.close();
-        }
-
-        //if there is no record with that news title then return false
-        return null;
-    }
+//    private News getNews(int newsId){
+//        try {
+//            db = nyDbHelper.getReadableDatabase();
+//
+//            Cursor cursor = db.query(NyusuContract.NewsEntry.TABLE_NAME,// Selecting Table
+//                    new String[]{NyusuContract.NewsEntry.CALUMN_NAME_ID,
+//                            NyusuContract.NewsEntry.CALUMN_NAME_IMGURL,
+//                            NyusuContract.NewsEntry.CALUMN_NAME_DATE,
+//                            NyusuContract.NewsEntry.CALUMN_NAME_TEXT,
+//                            NyusuContract.NewsEntry.CALUMN_NAME_MEDIUM_ID, },
+//                    //Selecting columns want to query
+//                    NyusuContract.NewsEntry.CALUMN_NAME_ID + "= ?",
+//                    new String[]{String.valueOf(newsId)},//Where clause
+//                    null, null, null);
+//
+//            if (cursor != null && cursor.moveToFirst() && cursor.getCount()>0) {
+//                //if cursor has value then in news database there is currency associated with this given currency name
+//                News news = new News(
+//                        cursor.getInt(0),
+//                        cursor.getString(1),
+//                        cursor.getString(2),
+//                        cursor.getString(3),
+//                        cursor.getString(4));
+//
+//                System.out.println(news.toString());
+//                return news;
+//            }
+//        }catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            nyDbHelper.close();
+//        }
+//
+//        //if there is no record with that news title then return false
+//        return null;
+//    }
 
     /* Removed update currency
     public boolean updateUser(User user){

@@ -22,6 +22,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
                     android:paddingEnd="@dimen/sm_padding"
                     android:text="---" />
 
@@ -29,7 +30,8 @@
                     android:id="@+id/textview_weather_temperature"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="sans-serif-bold"
+                    android:textColor="@color/colorPrimaryDark"
                     android:gravity="center"
                     android:text="--°"
                     android:textFontWeight="bold"
@@ -54,21 +56,26 @@
                 android:paddingRight="@dimen/sm_padding"
                 android:paddingBottom="@dimen/sm_padding">
 
-                <TextView
+                <TextClock
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-thin"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:textSize="50sp"
                     android:gravity="end"
-                    android:text="--:--"
-                    android:textSize="70sp" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:fontFamily="sans-serif-light"/>
 
                 <TextView
+                    android:id="@+id/textview_greeting"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
+                    android:textColor="@color/colorPrimaryDark"
                     android:gravity="end"
-                    android:text="Goodmorning, User"
-                    android:textSize="24sp" />
+                    android:layout_marginLeft="10dp"
+                    android:text="---, ---"
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
     </android.support.design.card.MaterialCardView>

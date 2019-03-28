@@ -1,15 +1,18 @@
 package sr.unasat.nyusu.fragments;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import sr.unasat.nyusu.R;
+import sr.unasat.nyusu.services.TimeService;
 import sr.unasat.nyusu.services.WeatherService;
 import sr.unasat.nyusu.adapters.CurrencyListAdapter;
 import sr.unasat.nyusu.adapters.OilpriceListAdapter;
@@ -52,9 +55,14 @@ public class HomeFragment extends Fragment {
         listviewOilpricesList = view.findViewById(R.id.listview_oilpriceslist);
 
         if(Helper.isConnectedToInternet(getActivity())){
-            //do api calls
-            setWeatherData(view);
+            ProgressDialog progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage("Fetching data, please wait");
+            progressDialog.show();
 
+            //do api calls
+            getHomeData(view);
+
+            progressDialog.dismiss();
         }else{
             //no inernet
             Toast.makeText(getActivity(),"No Internet",Toast.LENGTH_SHORT).show();
@@ -70,10 +78,24 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    public void getHomeData(View view){
+        setWeatherData(view);
+        doGreeting(view);
+    }
+
     public void setWeatherData(View view){
         WeatherService weatherService = new WeatherService(this.getActivity(), view);
         weatherService.getWeatherData();
     }
+
+    public void doGreeting(View view){
+        TextView greetinText = view.findViewById(R.id.textview_greeting);
+
+        TimeService timeService = new TimeService(this.getContext());
+        greetinText.setText(timeService.getTimeText());
+    }
+
+
 
 
 }

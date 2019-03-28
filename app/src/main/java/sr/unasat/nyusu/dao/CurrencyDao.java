@@ -47,42 +47,42 @@ public class CurrencyDao {
     }
     */
 
-    private Currency getCurrency(int currencyId){
-        try {
-            db = nyDbHelper.getReadableDatabase();
-
-            Cursor cursor = db.query(NyusuContract.CurrencyEntry.TABLE_NAME,// Selecting Table
-                    new String[]{NyusuContract.CurrencyEntry.CALUMN_NAME_ID,
-                            NyusuContract.CurrencyEntry.CALUMN_NAME_NAME,
-                            NyusuContract.CurrencyEntry.CALUMN_NAME_SYMBOL,
-                            NyusuContract.CurrencyEntry.CALUMN_NAME_BUY,
-                            NyusuContract.CurrencyEntry.CALUMN_NAME_SELL, },
-                    //Selecting columns want to query
-                    NyusuContract.CurrencyEntry.CALUMN_NAME_ID + "= ?",
-                    new String[]{String.valueOf(currencyId)},//Where clause
-                    null, null, null);
-
-            if (cursor != null && cursor.moveToFirst() && cursor.getCount()>0) {
-                //if cursor has value then in currency database there is currency associated with this given currency name
-                Currency currency = new Currency(
-                        cursor.getInt(0),
-                        cursor.getString(1),
-                        cursor.getString(2),
-                        cursor.getDouble(3),
-                        cursor.getDouble(4));
-
-                System.out.println(currency.toString());
-                return currency;
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            nyDbHelper.close();
-        }
-
-        //if there is no record with that currency name then return @false
-        return null;
-    }
+//    private Currency getCurrency(int currencyId){
+//        try {
+//            db = nyDbHelper.getReadableDatabase();
+//
+//            Cursor cursor = db.query(NyusuContract.CurrencyEntry.TABLE_NAME,// Selecting Table
+//                    new String[]{NyusuContract.CurrencyEntry.CALUMN_NAME_ID,
+//                            NyusuContract.CurrencyEntry.CALUMN_NAME_NAME,
+//                            NyusuContract.CurrencyEntry.CALUMN_NAME_SYMBOL,
+//                            NyusuContract.CurrencyEntry.CALUMN_NAME_BUY,
+//                            NyusuContract.CurrencyEntry.CALUMN_NAME_SELL, },
+//                    //Selecting columns want to query
+//                    NyusuContract.CurrencyEntry.CALUMN_NAME_ID + "= ?",
+//                    new String[]{String.valueOf(currencyId)},//Where clause
+//                    null, null, null);
+//
+//            if (cursor != null && cursor.moveToFirst() && cursor.getCount()>0) {
+//                //if cursor has value then in currency database there is currency associated with this given currency name
+//                Currency currency = new Currency(
+//                        cursor.getInt(0),
+//                        cursor.getString(1),
+//                        cursor.getString(2),
+//                        cursor.getDouble(3),
+//                        cursor.getDouble(4));
+//
+//                System.out.println(currency.toString());
+//                return currency;
+//            }
+//        }catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            nyDbHelper.close();
+//        }
+//
+//        //if there is no record with that currency name then return @false
+//        return null;
+//    }
 
     /* Removed update currency
     public boolean updateUser(User user){

@@ -7,26 +7,28 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import sr.unasat.nyusu.R;
 import sr.unasat.nyusu.entities.OilPrice;
 
 public class OilpriceListAdapter extends BaseAdapter {
 
-    private final Activity context;
-    private final OilPrice[] oilPrices;
+    private Activity context;
+    private ArrayList<OilPrice> oilPrices;
     private final int[] oilPriceImages = {
             R.drawable.gow2,
             R.drawable.rb
     };
 
-    public OilpriceListAdapter(Activity context, OilPrice[] oilPrices) {
+    public OilpriceListAdapter(Activity context, ArrayList<OilPrice> oilPrices) {
         this.context = context;
         this.oilPrices = oilPrices;
     }
 
     @Override
     public int getCount() {
-        return oilPrices.length;
+        return oilPrices.size();
     }
 
     @Override
@@ -48,8 +50,8 @@ public class OilpriceListAdapter extends BaseAdapter {
         TextView oilpriceDiesel = view.findViewById(R.id.textview_oilprice_diesel);
 
         oilpriceImage.setImageResource(oilPriceImages[position]);
-        oilpriceUnleaded.setText(String.valueOf(oilPrices[position].getUnleaded()));
-        oilpriceDiesel.setText(String.valueOf(oilPrices[position].getDiesel()));
+        oilpriceUnleaded.setText(String.valueOf(oilPrices.get(position).getUnleaded()));
+        oilpriceDiesel.setText(String.valueOf(oilPrices.get(position).getDiesel()));
 
         return view;
     }

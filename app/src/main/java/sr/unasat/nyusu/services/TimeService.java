@@ -1,16 +1,21 @@
 package sr.unasat.nyusu.services;
 
 import android.content.Context;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.Calendar;
 
+import sr.unasat.nyusu.R;
 import sr.unasat.nyusu.dao.UserDao;
 
 public class TimeService {
     Context context;
+    View view;
 
-    public TimeService(Context context) {
+    public TimeService(Context context, View view) {
         this.context = context;
+        this.view = view;
     }
 
     public String getTime(){
@@ -35,6 +40,10 @@ public class TimeService {
     public String getTimeText(){
         UserDao userDao = new UserDao(context);
         return getTime() + ", " + userDao.getUser().getName();
+    }
 
+    public void getTimeData() {
+        TextView greetingText = view.findViewById(R.id.textview_greeting);
+        greetingText.setText(getTimeText());
     }
 }

@@ -61,7 +61,9 @@ public class Currency {
         return "Currency{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", symbol='" + symbol + '\'' +
+                ", buy=" + buy +
+                ", sell=" + sell +
                 '}';
     }
-
 }

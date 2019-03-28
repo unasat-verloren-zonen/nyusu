@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import sr.unasat.nyusu.R;
+import sr.unasat.nyusu.services.CurrencyService;
 import sr.unasat.nyusu.services.TimeService;
 import sr.unasat.nyusu.services.WeatherService;
 import sr.unasat.nyusu.adapters.CurrencyListAdapter;
@@ -25,19 +26,14 @@ import sr.unasat.nyusu.helpers.Helper;
  */
 public class HomeFragment extends Fragment {
 
-    ListView listviewCurrencyList, listviewOilpricesList;
-
-    //get currencies
-    Currency[] currencies = {
-            new Currency(1, "USD", "$", 7.396, 7.520),
-            new Currency(2, "EUR", "€", 8.319, 8.456)
-    };
+    ListView listviewOilpricesList;
 
     //get oilprices
     OilPrice[] oilPrices = {
             new OilPrice(1, 6.39, 6.24),
             new OilPrice(2, 6.42, 6.26)
     };
+
 
 
     public HomeFragment() {
@@ -51,9 +47,10 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        listviewCurrencyList = view.findViewById(R.id.listview_currencylist);
+
         listviewOilpricesList = view.findViewById(R.id.listview_oilpriceslist);
 
+        //check if there is internet
         if(Helper.isConnectedToInternet(getActivity())){
             ProgressDialog progressDialog = new ProgressDialog(getActivity());
             progressDialog.setMessage("Fetching data, please wait");
@@ -68,8 +65,7 @@ public class HomeFragment extends Fragment {
             Toast.makeText(getActivity(),"No Internet",Toast.LENGTH_SHORT).show();
         }
 
-        CurrencyListAdapter currencyListAdapter = new CurrencyListAdapter(this.getActivity(), currencies);
-        listviewCurrencyList.setAdapter(currencyListAdapter);
+
 
         OilpriceListAdapter oilpriceListAdapter = new OilpriceListAdapter(this.getActivity(), oilPrices);
         listviewOilpricesList.setAdapter(oilpriceListAdapter);
@@ -80,7 +76,8 @@ public class HomeFragment extends Fragment {
 
     public void getHomeData(View view){
         setWeatherData(view);
-        doGreeting(view);
+        setTimeData(view);
+        setCurrencyData(view);
     }
 
     public void setWeatherData(View view){
@@ -88,12 +85,16 @@ public class HomeFragment extends Fragment {
         weatherService.getWeatherData();
     }
 
-    public void doGreeting(View view){
-        TextView greetinText = view.findViewById(R.id.textview_greeting);
-
-        TimeService timeService = new TimeService(this.getContext());
-        greetinText.setText(timeService.getTimeText());
+    public void setTimeData(View view){
+        TimeService timeService = new TimeService(this.getContext(), view);
+        timeService.getTimeData();
     }
+
+    public void setCurrencyData(View view){
+        CurrencyService currencyService = new CurrencyService(getActivity(), view);
+        currencyService.getCurrencyData();
+    }
+
 
 
 

@@ -6,22 +6,24 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import sr.unasat.nyusu.R;
 import sr.unasat.nyusu.entities.Currency;
 
 public class CurrencyListAdapter extends BaseAdapter {
 
-    private final Activity context;
-    private final Currency[] currencies;
+    private Activity context;
+    private ArrayList<Currency> currencies;
 
-    public CurrencyListAdapter(Activity context, Currency[] currencies) {
+    public CurrencyListAdapter(Activity context, ArrayList<Currency> currencies) {
         this.context = context;
         this.currencies = currencies;
     }
 
     @Override
     public int getCount() {
-        return currencies.length;
+        return currencies.size();
     }
 
     @Override
@@ -42,9 +44,9 @@ public class CurrencyListAdapter extends BaseAdapter {
         TextView currencyBuy = view.findViewById(R.id.textview_currency_buy);
         TextView currencySell = view.findViewById(R.id.textview_currency_sell);
 
-        currencySymbol.setText(currencies[position].getSymbol() + " - " + currencies[position].getName());
-        currencyBuy.setText(String.valueOf(currencies[position].getBuy()));
-        currencySell.setText(String.valueOf(currencies[position].getSell()));
+        currencySymbol.setText(currencies.get(position).getSymbol() + " - " + currencies.get(position).getName());
+        currencyBuy.setText(String.valueOf(currencies.get(position).getBuy()));
+        currencySell.setText(String.valueOf(currencies.get(position).getSell()));
 
         return view;
     }

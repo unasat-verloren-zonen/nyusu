@@ -6,24 +6,34 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import sr.unasat.nyusu.R;
+import sr.unasat.nyusu.services.WeatherService;
+import sr.unasat.nyusu.adapters.CurrencyListAdapter;
+import sr.unasat.nyusu.adapters.OilpriceListAdapter;
 import sr.unasat.nyusu.entities.Currency;
+import sr.unasat.nyusu.entities.OilPrice;
+import sr.unasat.nyusu.helpers.Helper;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
 
-    ListView listviewCurrencyList;
+    ListView listviewCurrencyList, listviewOilpricesList;
 
     //get currencies
     Currency[] currencies = {
-            new Currency(2, "USD", "$", 7.396, 7.520),
-            new Currency(1, "EUR", "€", 8.319, 8.456)
+            new Currency(1, "USD", "$", 7.396, 7.520),
+            new Currency(2, "EUR", "€", 8.319, 8.456)
+    };
+
+    //get oilprices
+    OilPrice[] oilPrices = {
+            new OilPrice(1, 6.39, 6.24),
+            new OilPrice(2, 6.42, 6.26)
     };
 
 
@@ -39,45 +49,31 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         listviewCurrencyList = view.findViewById(R.id.listview_currencylist);
+        listviewOilpricesList = view.findViewById(R.id.listview_oilpriceslist);
 
-        CurrencyListAdapter currencyListAdapter = new CurrencyListAdapter();
+        if(Helper.isConnectedToInternet(getActivity())){
+            //do api calls
+            setWeatherData(view);
+
+        }else{
+            //no inernet
+            Toast.makeText(getActivity(),"No Internet",Toast.LENGTH_SHORT).show();
+        }
+
+        CurrencyListAdapter currencyListAdapter = new CurrencyListAdapter(this.getActivity(), currencies);
         listviewCurrencyList.setAdapter(currencyListAdapter);
+
+        OilpriceListAdapter oilpriceListAdapter = new OilpriceListAdapter(this.getActivity(), oilPrices);
+        listviewOilpricesList.setAdapter(oilpriceListAdapter);
 
         // Inflate the layout for this fragment
         return view;
     }
 
-    private class CurrencyListAdapter extends BaseAdapter{
-
-        @Override
-        public int getCount() {
-            return currencies.length;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View view = getLayoutInflater().inflate(R.layout.currency_inflater, null);
-
-            TextView currencySymbol = view.findViewById(R.id.textview_currency_symbol);
-            TextView currencyBuy = view.findViewById(R.id.textview_currency_buy);
-            TextView currencySell = view.findViewById(R.id.textview_currency_sell);
-
-            currencySymbol.setText(currencies[position].getSymbol() + " - " + currencies[position].getName());
-            currencyBuy.setText(String.valueOf(currencies[position].getBuy()));
-            currencySell.setText(String.valueOf(currencies[position].getSell()));
-
-            return view;
-        }
+    public void setWeatherData(View view){
+        WeatherService weatherService = new WeatherService(this.getActivity(), view);
+        weatherService.getWeatherData();
     }
+
 
 }

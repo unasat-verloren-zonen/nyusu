@@ -69,7 +69,7 @@ public class NewsDao {
                         cursor.getString(1),
                         cursor.getString(2),
                         cursor.getString(3),
-                        cursor.getDouble(4));
+                        cursor.getString(4));
 
                 System.out.println(news.toString());
                 return news;

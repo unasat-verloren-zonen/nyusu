@@ -1,10 +1,10 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <android.support.design.card.MaterialCardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:padding="@dimen/card_padding"
-        android:layout_marginBottom="@dimen/m_padding"
+        android:layout_marginBottom="12dp"
         app:cardCornerRadius="@dimen/card_radius">
 
         <LinearLayout
@@ -25,22 +25,22 @@
                     android:textSize="18sp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="50dp"
                     android:fontFamily="sans-serif-medium"
                     android:text="Verkoop"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:layout_gravity="end"/>
             </LinearLayout>
 
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/listview_currencylist"
-                android:paddingTop="@dimen/m_padding"
-                android:paddingBottom="@dimen/m_padding">
-
+                android:layout_height="78dp"
+                android:divider="@null"
+                android:id="@+id/listview_currencylist">
             </ListView>
+
         </LinearLayout>
     </android.support.design.card.MaterialCardView>
 </merge>

@@ -7,9 +7,9 @@ public class News {
     private String title;
     private String imgUrl;
     private String text;
-    private Date date;
+    private String date;
 
-    public News(int id, String title, String imgUrl, String text, double date) {
+    public News(int id, String title, String imgUrl, String text, String date) {
         this.id = id;
         this.title = title;
         this.imgUrl = imgUrl;
@@ -45,15 +45,15 @@ public class News {
         return text;
     }
 
-    public void setText(String buy) {
+    public void setText(String text) {
         this.text = text;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date sell) {
+    public void setDate(String date) {
         this.date = date;
     }
 

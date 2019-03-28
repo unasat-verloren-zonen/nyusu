@@ -11,33 +11,39 @@
             android:padding="@dimen/sm_padding">
 
             <LinearLayout
+                android:id="@+id/linearlayout_weather"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_gravity="center">
 
                 <TextView
+                    android:id="@+id/textview_weather_summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingEnd="@dimen/sm_padding"
-                    android:text="Sunny" />
+                    android:text="---" />
 
                 <TextView
+                    android:id="@+id/textview_weather_temperature"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
-                    android:text="26°"
+                    android:text="--°"
                     android:textFontWeight="bold"
                     android:textSize="30sp" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/sm_padding"
-                    android:src="@drawable/ic_wb_sunny_yellow_24dp"/>
+                <!--<com.thbs.skycons.library.SunView-->
+                    <!--android:layout_width="100dp"-->
+                    <!--android:layout_height="100dp"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--app:isStatic = "false"-->
+                    <!--app:strokeColor = "#000000"-->
+                    <!--app:bgColor = "#ffffff"/>-->
             </LinearLayout>
 
             <LinearLayout
@@ -53,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-thin"
                     android:gravity="end"
-                    android:text="12:30"
+                    android:text="--:--"
                     android:textSize="70sp" />
 
                 <TextView
@@ -61,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:gravity="end"
-                    android:text="Goodmorning, Jones"
+                    android:text="Goodmorning, User"
                     android:textSize="24sp" />
             </LinearLayout>
         </LinearLayout>
